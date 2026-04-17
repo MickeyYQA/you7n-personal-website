@@ -1,0 +1,205 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+    flex-direction: column;
+}
+
+.typing {
+    font-size: 3em;
+    color: blue;
+    font-weight: bold;
+    border-right: 0.1em solid blue;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.language-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;    
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+}
+
+.language-text {
+    font-size: 1em;
+    color: #888;
+    margin-top: 5px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+}
+
+
+.caption {
+    font-size: 1.5em;
+    color: #555;
+    margin-top: 20px;
+}
+
+.small-caption {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 20px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.button-container button {
+    font-size: 1em;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: 2px solid blue;
+    background-color: white;
+    color: blue;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: blue;
+    color: white;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.social-icons {
+    display: flex;
+    flex-direction: row; /* 横向排列社交图标 */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; /* 与版权信息之间的间距 */
+}
+
+.social-icon {
+    font-size: 2em;
+    color: #333;
+    margin: 0 15px;
+    text-decoration: none;
+    display: inline-block; /* 确保自定义图标与其他图标对齐 */
+}
+
+
+
+.social-icon:hover {
+    color: #555;
+}
+
+
+.modal {
+    display: none; /* Ensure the modal is hidden initially */
+    position: fixed;
+    z-index: 1001; /* Ensure the modal is on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 10px;
+    max-height: 90vh; /* Ensure the modal doesn't overflow the viewport */
+    overflow-y: auto; /* Enable vertical scroll if content is too long */
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+}
+
+.overlay {
+    position: fixed;
+    display: none; /* Ensure the overlay is hidden initially */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000; /* Ensure the overlay is behind the modal but above the rest of the content */
+}
+
+.blurred-background {
+    filter: blur(5px);
+}
+
+
+iframe {
+    border: 1px solid black;
+    width: 100%; /* takes precedence over the width set with the HTML width attribute */
+  }
+  
+.body-text {
+    color: black; 
+    text-align: left;
+    font-size: 1em; /* 正文字体大小，根据需要调整 */
+    line-height: 1.6; /* 行高，提高可读性 */
+    margin: 20px 0; /* 上下边距 */
+    font-family: 'Work Sans', sans-serif; /* 使用相同的字体 */
+}
+
+.comment {
+    color: #dddddd; /* Gray color */
+    font-size: 0.8em; /* Smaller font size */
+}
+
+.copyright {
+    margin-top: 10px; /* 与按钮之间的间距 */
+    text-align: center; /* 文字居中 */
+    display: block; /* 独立一行 */
+}
+
+.no-style {
+    color: inherit; /* 继承父元素的颜色 */
+    text-decoration: none; /* 移除下划线 */
+}
+
+.no-style:hover {
+    text-decoration: underline; /* 在悬停时添加下划线 */
+}

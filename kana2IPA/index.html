@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanji to IPA Converter</title>
+    <script src="https://unpkg.com/wanakana"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+            font-family: 'Work Sans', sans-serif;
+        }
+        input, textarea {
+            font-family: 'Noto Serif', serif;
+            margin: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .output {
+            margin: 20px;
+            font-size: 1.2em;
+        }
+        .button-container button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: 2px solid blue;
+            background-color: white;
+            color: blue;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .return-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1em;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            background-color: #fff;
+            color: #333;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .return-button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <button class="return-button" onclick="goBack()">リターン | Back</button>
+    <div class="container">
+        <h1>仮名から国際音声記号への変換器</h1>
+        <h3>Japanese Kana to IPA Converter</h3>
+        <textarea type="text" id="kanaInput" placeholder="仮名入力 | Input Kana" rows="4" cols="50"></textarea>
+        <div class="button-container">
+            <button onclick="convertToRomaji(), convertToIPA()">変換 | Convert</button>
+        </div>
+        <div class="output">
+            <textarea id="RomajiOutput" placeholder="ローマ字 | Rōmaji" rows="4" cols="50"></textarea>
+            <textarea id="IPAoutput" placeholder="国際音声記号 | IPA" rows="4" cols="50"></textarea>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        function convertToRomaji() {
+            const kanaInput = document.getElementById('kanaInput').value;
+            const RomajiOutput = wanakana.toRomaji(kanaInput);
+            document.getElementById('RomajiOutput').value = RomajiOutput;
+            return RomajiOutput;
+            console.log(kanaInput);
+            console.log(RomajiOutput);
+        }
+
+        function convertToIPA() {
+            var inputText = convertToRomaji('kanaInput');
+            var outputText = inputText.replace(/u/g, "ɯ").replace(/j/g, "dʑ").replace(/r/g, "ɺ").replace(/sh/g, "ɕ").replace(/ch/g, "tɕ");
+            outputText = outputText.replace(/tsɯ/g,"t͡sɯ").replace(/hi/g,"çi").replace(/fɯ/g,"ɸɯ");
+            outputText = outputText.replace(/kya/g,"kʲa").replace(/kyɯ/g,"kʲu").replace(/kyo/g,"kʲo");
+            outputText = outputText.replace(/ɕɯ/g,"ɕu");
+            outputText = outputText.replace(/nya/g,"nʲa").replace(/nyɯ/g,"nʲu").replace(/nyo/g,"nʲo");
+            outputText = outputText.replace(/hya/g,"hʲa").replace(/hyɯ/g,"hʲu").replace(/hyo/g,"hʲo");
+            outputText = outputText.replace(/mya/g,"mʲa").replace(/myɯ/g,"mʲu").replace(/myo/g,"mʲo");
+            outputText = outputText.replace(/ɺya/g,"ɺʲa").replace(/ɺyɯ/g,"ɺʲu").replace(/ɺyo/g,"ɺʲo");
+            outputText = outputText.replace(/ya/g,"ja").replace(/yɯ/g,"jɯ").replace(/yo/g,"jo");
+            outputText = outputText.replace(/a/g, "ɑ̈").replace(/e/g, "e̞").replace(/o/g,"o̞");
+            outputText = outputText.replace(/ɑ̈ɑ̈/g, "ɑ̈ː").replace(/e̞e̞/g, "e̞ː").replace(/ii/g,"iː").replace(/ɯɯ/g, "ɯː").replace(/uɯ/g,"uː");
+            outputText = outputText.replace(/o̞ɯ/g, "o̞ː").replace(/o̞o̞/g, "o̞ː");
+            document.getElementById("IPAoutput").value = outputText;
+            console.log(outputText);
+        }
+    </script>
+</body>
+</html>
