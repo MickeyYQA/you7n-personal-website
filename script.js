@@ -1,11 +1,11 @@
 const texts = [
     { text: "Hello", lang: "[həˈləʊ], English" },
-    { text: "你好", lang: "[ni˨˩˦.xɑʊ˨˩˦], Chinese" },
-    { text: "Guten Tag", lang: "[ɡuːtn taːk]German" },
-    { text: "Hola", lang: "['ola], Spanish" },
-    { text: "Bonjour", lang: "[bɔ̃ʒuʀ], French" },
-    { text: "Salve", lang: "['salʋe], Latin" },
+    { text: "你好", lang: "[ni˧˥.xɑʊ˨˩˦], Chinese" },
     { text: "こんにちは", lang: "konnichiwa, [ko̞nˈni̥tɕiwa], Japanese" },
+    { text: "Bonjour", lang: "[bɔ̃ʒuʀ], French" },
+    { text: "Guten Tag", lang: "[ɡuːtn taːk], German" },
+    { text: "Hola", lang: "['ola], Spanish" },
+    { text: "Salve", lang: "['salʋe], Latin" },
     { text: "안녕하세요", lang: "annyeonghaseyo, [a̠n.njʌ̹ŋ.ha̠.se̞.jo̞], Korean" },
     { text: "ئامانمۇسىز", lang: "amanmusiz, [ɑː.mɑn.muː.sɯz], Uyghur" },
     { text: "Привет", lang: "privet, [prʲɪˈvʲet], Russian" },
@@ -21,12 +21,13 @@ const texts = [
     { text: "გამარჯობა", lang: "gamarjoba, [ɡɑ.mɑr.dʒoˈbɑ], Georgian" },
     { text: "Բարև", lang: "barev, [bɑˈɾɛv], Armenian" },
     { text: "Xin chào", lang: "[sin t͡ɕa̤w], Vietnamese" },
+    { text: "吀嘲", lang: "[sin t͡ɕa̤w], Vietnamese (chữ Nôm / 𡦂喃)" },
     { text: "העלא", lang: "hala, [haˈʕɑ], Hebrew" },
     { text: "สวัสดี", lang: "sawatdee, [sa.wát.dīː], Thai" },
     { text: "Góðan dag", lang: "[ˈkouːðanˌtɑːɣ], Icelandic" },
     { text: "Merhaba", lang: "[ˈmɛɾhaba], Turkish" },
     { text: "བཀྲ་ཤིས་བདེ་ལེགས།", lang: "Tashi Delek, [ˈtʂʰaʃi ˈdeːleɡ], Tibetan" },
-    { text: "Ciallo~(∠·ω< )⌒★", lang: "[t͡ɕɑ̈˦.lo̞˨˧]" }
+    { text: "Ciallo~(∠·ω< )⌒★", lang: "[t͡ɕɑ̈˦.lo̞˨˧], ?" }
 ];
 
 let currentIndex = 0;
@@ -34,11 +35,13 @@ const typingSpeed = 200; // Typing speed in milliseconds
 const eraseSpeed = 100; // Erase speed in milliseconds
 const delayBetweenTexts = 2000; // Delay between texts in milliseconds
 
+function isRTLText(text) {
+    return /[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/.test(text);
+}
+
 function typeText(text, element, callback) {
     let index = 0;
-    element.style.animation = `typing ${text.length * typingSpeed}ms steps(${text.length}, end), blink 0.5s step-end infinite`; // Set animation dynamically
-    
-    // Display the language as soon as typing starts
+
     const langContainer = document.getElementById('language-text');
     langContainer.textContent = `(${texts[currentIndex].lang})`;
 
@@ -71,6 +74,7 @@ function eraseText(element, callback) {
 function startTypingAnimation() {
     const element = document.getElementById('welcome-text');
     const langContainer = document.getElementById('language-text');
+    const heroHello = element?.closest('.hero__hello');
 
     function cycleText() {
         const { text, lang } = texts[currentIndex];
@@ -78,6 +82,17 @@ function startTypingAnimation() {
         // Clear previous text and language
         element.textContent = '';
         langContainer.textContent = '';
+        element.classList.remove('lang-zh', 'lang-ja', 'lang-rtl');
+        heroHello?.classList.remove('is-rtl');
+
+        if (text === "你好") {
+            element.classList.add('lang-zh');
+        } else if (/[\u3040-\u30ff]/.test(text)) {
+            element.classList.add('lang-ja');
+        } else if (isRTLText(text)) {
+            element.classList.add('lang-rtl');
+            heroHello?.classList.add('is-rtl');
+        }
 
         typeText(text, element, () => {
             eraseText(element, () => {
@@ -91,33 +106,4 @@ function startTypingAnimation() {
 
 document.addEventListener('DOMContentLoaded', () => {
     startTypingAnimation();
-
-    // Ensure the modal and overlay are hidden on load
-    modal.style.display = 'none';
-    overlay.style.display = 'none';
-});
-
-// Modal functionality
-const modal = document.getElementById('modal');
-const overlay = document.getElementById('overlay');
-const openModalBtn = document.getElementById('open-modal');
-const closeModalBtn = document.getElementById('close-modal');
-const container = document.querySelector('.container');
-
-openModalBtn.addEventListener('click', () => {
-    modal.style.display = 'flex';
-    overlay.style.display = 'block';
-    container.classList.add('blurred-background');
-});
-
-closeModalBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    overlay.style.display = 'none';
-    container.classList.remove('blurred-background');
-});
-
-overlay.addEventListener('click', () => {
-    modal.style.display = 'none';
-    overlay.style.display = 'none';
-    container.classList.remove('blurred-background');
 });

@@ -3,44 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>you7n's home</title>
+    <meta name="theme-color" content="#f6f1ea">
+    <title>YOU7N</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=YourFontName:wght@400;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/cmu-serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!--Safari中要显示网站的Logo需要特意设置一下，并不是通常的写法-->
 </head>
 <body>
-    <div class="container">
-        <div>
-            <span id="welcome-text" class="typing"></span>
-            <div id="language-text" class="language-container"></div>
-            <div class="caption">This is you7n ^ ^</div>
-            <div class="small-caption">
-                Check out my work 🧬( ⁎ᵕᴗᵕ⁎ )🧬
+    <main class="page">
+        <header class="hero">
+            <div class="hero__kicker">
+                <span class="hero__mark">YOU7N</span>
+                <span class="hero__slash">/</span>
+                <span class="hero__muted">home</span>
             </div>
-            <div class="button-container">
-                <a href="http://supersmest.you7n.com"><button>Supersmest</button></a>
-                <a href="https://blog.you7n.com"><button>MyBlog!!</button></a>
-                <!--<button id="open-modal"><small>Resources</small></button>-->
+
+            <div class="hero__hello" aria-live="polite">
+                <span id="welcome-text" class="typewriter"></span>
+                <span class="cursor" aria-hidden="true"></span>
             </div>
-            <div class="button-container">
-                <a href="/speaker"><button><small>Speakers Optimal Position Rater</small></button></a>
-                <a href="/kana2IPA"><button><small>Kana to IPA Converter</small></button></a>
-                <a href="hex.you7n.com"><button><small>HEX Clock</small></button></a>
-                <a href="/speciesDetect"><button><small>检测自己是什么物种</small></button></a>
+
+            <div id="language-text" class="hero__ipa"></div>
+
+            <div class="hero__copy">
+                <div class="hero__tagline">Hi! This is you7n here ^ ^</div>
+                <div class="hero__sub">A navigation page that leads you to all my works & experiments! </div>
             </div>
-        </div>
-    </div>
-    
-    <footer>
-        <a href="https://github.com/MickeyYQA" target="_blank" class="social-icon">
-            <i class="fab fa-github"></i>
-        </a>
-        <a href="https://space.bilibili.com/513685692" target="_blank" class="social-icon">
-            <i class="fab fa-bilibili"></i>
-        </a>
-    </footer>
-    <p class="comment copyright">&copy; YOU7N <a href="https://beian.miit.gov.cn/" target="_blank" class="no-style">京ICP备2024049127号-2</a></p>
+
+        </header>
+
+        <section class="panel" aria-label="Projects">
+            <div class="panel__head">
+                <h2 class="panel__title">Projects</h2>
+            </div>
+
+            <div class="cards" role="list">
+                <a class="card" role="listitem" href="https://blog.you7n.com" target="_blank" rel="noopener noreferrer">
+                    <div class="card__row">
+                        <div class="card__title">Blog</div>
+                        <div class="card__tag">Linguistics & Tech</div>
+                    </div>
+                    <div class="card__foot">blog.you7n.com</div>
+                </a>
+
+                <a class="card" role="listitem" href="http://supersmest.you7n.com" target="_blank" rel="noopener noreferrer">
+                    <div class="card__row">
+                        <div class="card__title">Supersmest</div>
+                        <div class="card__tag">Innovation</div>
+                    </div>
+                    <div class="card__foot">supersmest.you7n.com</div>
+                </a>
+
+                <a class="card" role="listitem" href="https://voice-intent.you7n.com" target="_blank" rel="noopener noreferrer">
+                    <div class="card__row">
+                        <div class="card__title">Voice Intent</div>
+                        <div class="card__tag">Innovation</div>
+                    </div>
+                    <div class="card__foot">voice-intent.you7n.com</div>
+                </a>
+
+                <a class="card" role="listitem" href="https://portfolio.you7n.com" target="_blank" rel="noopener noreferrer">
+                    <div class="card__row">
+                        <div class="card__title">Portfolio</div>
+                        <div class="card__tag">Collection</div>
+                    </div>
+                    <div class="card__foot">portfolio.you7n.com</div>
+                </a>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Tools">
+            <div class="panel__head">
+                <h2 class="panel__title">Tools</h2>
+            </div>
+
+            <div class="cards" role="list">
+                <a class="card" role="listitem" href="/speaker">
+                    <div class="card__row">
+                        <div class="card__title">Speakers Optimal Position Rater</div>
+                        <div class="card__tag">Interactive</div>
+                    </div>
+                    <div class="card__foot">/speaker</div>
+                </a>
+
+                <a class="card" role="listitem" href="/kana2IPA">
+                    <div class="card__row">
+                        <div class="card__title">Kana to IPA Converter</div>
+                        <div class="card__tag">Converter</div>
+                    </div>
+                    <div class="card__foot">/kana2IPA</div>
+                </a>
+
+                <a class="card" role="listitem" href="https://hex.you7n.com" target="_blank" rel="noopener noreferrer">
+                    <div class="card__row">
+                        <div class="card__title">HEX Clock</div>
+                        <div class="card__tag">Clock</div>
+                    </div>
+                    <div class="card__foot">hex.you7n.com</div>
+                </a>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Toys">
+            <div class="panel__head">
+                <h2 class="panel__title">Toys</h2>
+            </div>
+
+            <div class="cards" role="list">
+                <a class="card" role="listitem" href="/speciesDetect">
+                    <div class="card__row">
+                        <div class="card__title">What Species Are You?</div>
+                        <div class="card__tag">Quiz</div>
+                    </div>
+                    <div class="card__foot">/speciesDetect</div>
+                </a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer__social">
+                <a href="https://github.com/MickeyYQA" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://space.bilibili.com/513685692" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Bilibili">
+                    <i class="fab fa-bilibili"></i>
+                </a>
+            </div>
+            <div class="footer__legal">
+                <span>&copy; YOU7N</span>
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="no-style">京ICP备2024049127号-2</a>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
