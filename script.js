@@ -27,6 +27,8 @@ const texts = [
     { text: "Góðan dag", lang: "[ˈkouːðanˌtɑːɣ], Icelandic" },
     { text: "Merhaba", lang: "[ˈmɛɾhaba], Turkish" },
     { text: "བཀྲ་ཤིས་བདེ་ལེགས།", lang: "Tashi Delek, [ˈtʂʰaʃi ˈdeːleɡ], Tibetan" },
+    { text: "Saluton", lang: "[saˈluto̞n], Esperanto" },
+    { text: "nuqneH", lang: "[nuqˈnɛχ], Klingon" },
     { text: "Ciallo~(∠·ω< )⌒★", lang: "[t͡ɕɑ̈˦.lo̞˨˧], ?" }
 ];
 
