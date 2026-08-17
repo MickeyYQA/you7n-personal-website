@@ -47,6 +47,16 @@ function typeText(text, element, callback) {
     const langContainer = document.getElementById('language-text');
     langContainer.textContent = `(${texts[currentIndex].lang})`;
 
+    if (!text) {
+        callback();
+        return;
+    }
+
+    // Render the first character immediately to avoid an empty-state flicker
+    // between erase completion and the next typing cycle.
+    element.textContent = text.charAt(0);
+    index = 1;
+
     function type() {
         if (index < text.length) {
             element.textContent += text.charAt(index);
@@ -56,7 +66,12 @@ function typeText(text, element, callback) {
             setTimeout(callback, delayBetweenTexts);
         }
     }
-    type();
+
+    if (index < text.length) {
+        setTimeout(type, typingSpeed);
+    } else {
+        setTimeout(callback, delayBetweenTexts);
+    }
 }
 
 function eraseText(element, callback) {
@@ -75,14 +90,19 @@ function eraseText(element, callback) {
 
 function startTypingAnimation() {
     const element = document.getElementById('welcome-text');
+    const textNode = element?.querySelector('.typewriter__text');
     const langContainer = document.getElementById('language-text');
     const heroHello = element?.closest('.hero__hello');
 
+    if (!element || !textNode || !langContainer) {
+        return;
+    }
+
     function cycleText() {
-        const { text, lang } = texts[currentIndex];
+        const { text } = texts[currentIndex];
 
         // Clear previous text and language
-        element.textContent = '';
+        textNode.textContent = '';
         langContainer.textContent = '';
         element.classList.remove('lang-zh', 'lang-ja', 'lang-rtl');
         heroHello?.classList.remove('is-rtl');
@@ -96,8 +116,8 @@ function startTypingAnimation() {
             heroHello?.classList.add('is-rtl');
         }
 
-        typeText(text, element, () => {
-            eraseText(element, () => {
+        typeText(text, textNode, () => {
+            eraseText(textNode, () => {
                 currentIndex = (currentIndex + 1) % texts.length;
                 cycleText();
             });
